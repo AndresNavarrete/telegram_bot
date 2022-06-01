@@ -14,7 +14,7 @@ logging.basicConfig(
 )
 
 async def start(update: Update, context: CallbackContext.DEFAULT_TYPE) -> None:
-    await context.bot.send_message(chat_id=update.effective_chat.id, text="I'm a bot, please talk to me!")
+    await context.bot.send_message(chat_id=update.effective_chat.id, text="Hola amor! ❤️ Ahora puedes pedirle cosas a nuestro bot")
 
 async def help_command(update: Update, context: CallbackContext.DEFAULT_TYPE) -> None:
     """Send a message when the command /help is issued."""
@@ -22,17 +22,18 @@ async def help_command(update: Update, context: CallbackContext.DEFAULT_TYPE) ->
     await update.message.reply_text(msg)
 
 
-async def echo(update: Update, context: CallbackContext.DEFAULT_TYPE) -> None:
-    """Echo the user message."""
-    default_msg = "Si tienes dudas puedes usar el comando /help ❤️"
+async def answer(update: Update, context: CallbackContext.DEFAULT_TYPE) -> None:
     text_input = update.message.text
-    text_output = default_msg
     if text_input == '1':
-        text_output = love_msg()
-    if text_input == '2':
-        text_output = get_meme_url()
+        await update.message.reply_text(love_msg())
 
-    await update.message.reply_text(text_output)
+    elif text_input == '2':
+        text_output = get_meme_url()
+        await update.message.reply_photo(get_meme_url(), caption = "Meme para mi amorcito 💜")
+
+    else:
+        default_msg = "Con el comando /help  me puedes dar instrucciones"
+        await update.message.reply_text(default_msg)
 
 
 if __name__ == '__main__':
@@ -44,7 +45,7 @@ if __name__ == '__main__':
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("help", help_command))
 
-    echo_handler = MessageHandler(filters.TEXT & (~filters.COMMAND), echo)
-    application.add_handler(echo_handler)
+    message_handler = MessageHandler(filters.TEXT & (~filters.COMMAND), answer)
+    application.add_handler(message_handler)
     
     application.run_polling()

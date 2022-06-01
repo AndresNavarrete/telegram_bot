@@ -11,6 +11,3 @@ def get_meme_url():
     data = json.loads(response)
     meme_url = data.get('url')
     return meme_url
-
-
-
