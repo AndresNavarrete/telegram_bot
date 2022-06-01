@@ -1,6 +1,6 @@
 # telegram_bot
 
-### Requirements and use
+## Requirements and use
 The requirements.txt file should list all Python libraries that are mandatory for running this bot. To install them you can use:
 ```sh
 pip3 install -r requirements.txt
@@ -11,7 +11,7 @@ A `.env` file is needed to run the bot. Enviroment must have the following varia
 ```sh
 
 TOKEN=''     # telegram bot token
-MOVIE_KEY='' # omdbapi token
+MOVIE_KEY='' # omdb-api token
 IMDB_KEY=''  # imdb-api token
 
 ```
