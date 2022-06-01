@@ -1,7 +1,7 @@
 def help_menu():
     msg = """
 
-        Hola amorcito!  ❤️  💙
+        Hola amorcito!  ❤️ 💙
 
         Escribe el número de opción que quieres ver
 
@@ -9,6 +9,7 @@ def help_menu():
         2. Un meme random 🎲
         3. Una película de moda 🍿
         4. Una película IMDB top 250 🎥
+        5. Un Dorama random 🇰🇷
 
     """
     return msg

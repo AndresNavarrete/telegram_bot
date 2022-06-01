@@ -8,7 +8,7 @@ import os
 from messages.help import help_menu
 from messages.love import love_msg
 from messages.memes import get_meme_url
-from messages.movies import get_popular_movie, get_top_movie
+from messages.movies import get_popular_movie, get_top_movie, get_k_drama
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -42,6 +42,13 @@ async def answer(update: Update, context: CallbackContext.DEFAULT_TYPE) -> None:
     
     elif text_input == '4':
         movie = get_top_movie()
+        if not movie:
+            await update.message.reply_text( "Tuve un problema para pillar película 😓. Prueba de nuevo mejor")
+
+        await update.message.reply_photo(movie[1], caption = movie[0])
+    
+    elif text_input == '5':
+        movie = get_k_drama()
         if not movie:
             await update.message.reply_text( "Tuve un problema para pillar película 😓. Prueba de nuevo mejor")
 
