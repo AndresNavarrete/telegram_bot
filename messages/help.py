@@ -1,4 +1,8 @@
+''' help command '''
+
+
 def help_menu():
+    ''' get menu for help command'''
     msg = """
 
         Hola amorcito!  ❤️ 💙

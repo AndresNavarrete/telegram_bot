@@ -1,9 +1,12 @@
-import requests
+''' memes messages manager'''
+
 import json
 import random
+import requests
 
 ### https://github.com/D3vd/Meme_Api
 def get_meme_url():
+    ''' get url from random meme in reddit'''
 
     subreddits = ["memes", "dankmemes", "me_irl", "wholesomememes", "PrequelMemes"]
     sub = random.choice(subreddits)
