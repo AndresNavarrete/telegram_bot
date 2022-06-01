@@ -7,6 +7,7 @@ import os
 
 from messages.help import help_menu, love_msg
 from messages.memes import get_meme_url
+from messages.movies import get_movie
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -30,6 +31,13 @@ async def answer(update: Update, context: CallbackContext.DEFAULT_TYPE) -> None:
     elif text_input == '2':
         text_output = get_meme_url()
         await update.message.reply_photo(get_meme_url(), caption = "Meme para mi amorcito 💜")
+    
+    elif text_input == '3':
+        movie = get_movie()
+        if not movie:
+            await update.message.reply_text( "Tuve un problema para pillar película 😓. Prueba de nuevo mejor")
+
+        await update.message.reply_photo(movie[1], caption = movie[0])
 
     else:
         default_msg = "Con el comando /help  me puedes dar instrucciones"
