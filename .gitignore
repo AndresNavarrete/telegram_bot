@@ -3,6 +3,13 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+### VisualStudioCode ###
+.vscode/      
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+**/.history
+
 # C extensions
 *.so
 
