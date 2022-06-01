@@ -8,7 +8,7 @@ import os
 from messages.help import help_menu
 from messages.love import love_msg
 from messages.memes import get_meme_url
-from messages.movies import get_movie
+from messages.movies import get_popular_movie, get_top_movie
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -16,7 +16,7 @@ logging.basicConfig(
 )
 
 async def start(update: Update, context: CallbackContext.DEFAULT_TYPE) -> None:
-    await context.bot.send_message(chat_id=update.effective_chat.id, text="Hola amor! ❤️ Ahora puedes pedirle cosas a nuestro bot")
+    await context.bot.send_message(chat_id=update.effective_chat.id, text="Hola amor! ❤️ Ahora puedes pedirle cosas a nuestro bot. Escribe /help para más detalles")
 
 async def help_command(update: Update, context: CallbackContext.DEFAULT_TYPE) -> None:
     """Send a message when the command /help is issued."""
@@ -34,7 +34,14 @@ async def answer(update: Update, context: CallbackContext.DEFAULT_TYPE) -> None:
         await update.message.reply_photo(get_meme_url(), caption = "Meme para mi amorcito 💜")
     
     elif text_input == '3':
-        movie = get_movie()
+        movie = get_popular_movie()
+        if not movie:
+            await update.message.reply_text( "Tuve un problema para pillar película 😓. Prueba de nuevo mejor")
+
+        await update.message.reply_photo(movie[1], caption = movie[0])
+    
+    elif text_input == '4':
+        movie = get_top_movie()
         if not movie:
             await update.message.reply_text( "Tuve un problema para pillar película 😓. Prueba de nuevo mejor")
 

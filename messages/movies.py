@@ -6,29 +6,53 @@ from dotenv import load_dotenv
 import os
 
 ### http://www.omdbapi.com/ 
-def get_movie():
+### https://imdb-api.com/api
+def get_popular_movie():
     load_dotenv()
-    key = os.environ.get("MOVIE_KEY")
-    keywords = ["one", "star", "war", "love", "god", "earth", "family", "universe", "trial", "rise", "club", "lord", "teen", "europa"]
-    keyword = random.choice(keywords)
-    page = random.randint(1,2)
-    url = "https://www.omdbapi.com/?s={}&apikey={}&type=movie&page={}".format(
-        keyword,
-        key,
-        page
+    key_imdb = os.environ.get('IMDB_KEY')
+    
+    url = "https://imdb-api.com/API/MostPopularMovies/{}".format(
+        key_imdb
     )
-
     response = requests.get(url).text
     data = json.loads(response)
-    ok = data.get('Response')
+    ok = data.get('errorMessage') == ''
 
     if not ok:
         return False
 
-    search = data.get('Search')
-    movie = random.choice(search)
+    items = data.get('items')
+    movie = random.choice(items)
+    movie_id = movie.get('id')
 
-    str = "{} ({})".format(movie["Title"], movie["Year"])
-    poster_url = movie["Poster"]
-
+    title = movie.get('fullTitle')
+    plot, poster_url = get_movie_plot_and_poster(movie_id)
+    str = title + "\n\n" + plot
     return (str, poster_url)
+
+def get_movie_plot_and_poster(imdb_id: str):
+    key = os.environ.get("MOVIE_KEY")
+    url = "https://www.omdbapi.com/?i={}&apikey={}".format(
+        imdb_id,
+        key
+    )
+    response = requests.get(url).text
+    data = json.loads(response)
+    plot = data.get('Plot')
+    poster = data.get('Poster')
+    return plot, poster
+
+def get_top_movie():
+    with open('data/250_movies.json', 'r') as f:
+        movies = json.load(f)
+    movie = random.choice(movies["items"])
+    movie_id = movie.get('id')
+
+    title = movie.get('fullTitle')
+    plot, poster_url = get_movie_plot_and_poster(movie_id)
+    str = title + "\n\n" + plot
+    return (str, poster_url)
+
+
+
+

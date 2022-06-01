@@ -7,7 +7,8 @@ def help_menu():
 
         1. Mensajito de amor  💖
         2. Un meme random 🎲
-        3. Recomendación de película 🍿
+        3. Una película de moda 🍿
+        4. Una película IMDB top 250 🎥
 
     """
     return msg
