@@ -2,10 +2,12 @@ import random
 import requests
 import json
 
+from dotenv import load_dotenv
+import os
 
 def get_movie():
-
-    key = '7413c775'
+    load_dotenv()
+    key = os.environ.get("MOVIE_KEY")
     keywords = ["one", "star", "war", "love", "god", "earth", "family", "universe", "trial", "rise", "club", "lord", "teen", "europa"]
     keyword = random.choice(keywords)
     page = random.randint(1,2)

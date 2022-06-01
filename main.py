@@ -2,10 +2,11 @@ import logging
 from telegram import Update
 from telegram.ext import filters, MessageHandler, ApplicationBuilder, CommandHandler, CallbackContext
 
-from dotenv import find_dotenv, load_dotenv
+from dotenv import load_dotenv
 import os
 
-from messages.help import help_menu, love_msg
+from messages.help import help_menu
+from messages.love import love_msg
 from messages.memes import get_meme_url
 from messages.movies import get_movie
 
