@@ -2,6 +2,7 @@ import requests
 import json
 import random
 
+### https://github.com/D3vd/Meme_Api 
 def get_meme_url():
 
     subreddits = ["memes", "dankmemes", "me_irl", "wholesomememes", "PrequelMemes"]
