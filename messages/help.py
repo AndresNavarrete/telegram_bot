@@ -13,5 +13,3 @@ def help_menu():
 
     """
     return msg
-
-
