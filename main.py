@@ -6,6 +6,7 @@ from dotenv import find_dotenv, load_dotenv
 import os
 
 from messages.help import help_menu, love_msg
+from messages.memes import get_meme_url
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -28,6 +29,8 @@ async def echo(update: Update, context: CallbackContext.DEFAULT_TYPE) -> None:
     text_output = default_msg
     if text_input == '1':
         text_output = love_msg()
+    if text_input == '2':
+        text_output = get_meme_url()
 
     await update.message.reply_text(text_output)
 

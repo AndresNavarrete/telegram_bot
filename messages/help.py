@@ -9,7 +9,7 @@ def help_menu():
         Escribe el número de opción que quieres ver
 
         1. Mensajito de amor
-        2. Dedicación de canciones
+        2. Un meme random
         3. Recomendación de película
         4. Recomendación de video de Youtube
 
