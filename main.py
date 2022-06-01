@@ -5,6 +5,7 @@ from telegram.ext import filters, MessageHandler, ApplicationBuilder, CommandHan
 from dotenv import find_dotenv, load_dotenv
 import os
 
+from messages.help import help_menu, love_msg
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -16,12 +17,19 @@ async def start(update: Update, context: CallbackContext.DEFAULT_TYPE) -> None:
 
 async def help_command(update: Update, context: CallbackContext.DEFAULT_TYPE) -> None:
     """Send a message when the command /help is issued."""
-    await update.message.reply_text("Help!")
+    msg = help_menu()
+    await update.message.reply_text(msg)
 
 
 async def echo(update: Update, context: CallbackContext.DEFAULT_TYPE) -> None:
     """Echo the user message."""
-    await update.message.reply_text(update.message.text)
+    default_msg = "Si tienes dudas puedes usar el comando /help ❤️"
+    text_input = update.message.text
+    text_output = default_msg
+    if text_input == '1':
+        text_output = love_msg()
+
+    await update.message.reply_text(text_output)
 
 
 if __name__ == '__main__':
