@@ -17,8 +17,10 @@ from messages.memes import get_meme_url
 from messages.movies import get_popular_movie, get_top_movie, get_k_drama
 
 logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
-)
+        filename="telegram_bot.log",
+        level=logging.INFO,
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    )
 
 
 async def start(update: Update, context: CallbackContext.DEFAULT_TYPE) -> None:
@@ -29,6 +31,7 @@ async def start(update: Update, context: CallbackContext.DEFAULT_TYPE) -> None:
 
 
 async def help_command(update: Update, context: CallbackContext.DEFAULT_TYPE) -> None:
+    logging.info("Help command")
     """Send a message when the command /help is issued."""
     msg = help_menu()
     await update.message.reply_text(msg)
@@ -36,6 +39,7 @@ async def help_command(update: Update, context: CallbackContext.DEFAULT_TYPE) ->
 
 async def answer(update: Update, context: CallbackContext.DEFAULT_TYPE) -> None:
     text_input = update.message.text
+    logging.info(f"Text input: {text_input}")
     if text_input == "1":
         await update.message.reply_text(love_msg())
 
