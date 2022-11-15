@@ -3,7 +3,7 @@
 ## Requirements and use
 The requirements.txt file should list all Python libraries that are mandatory for running this bot. To install them you can use:
 ```sh
-pip3 install -r requirements.txt
+pipenv shell
 ```
 
 A `.env` file is needed to run the bot. Enviroment must have the following variables:
