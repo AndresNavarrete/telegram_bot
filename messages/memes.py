@@ -5,7 +5,7 @@ import random
 ### https://github.com/D3vd/Meme_Api
 def get_meme_url():
 
-    subreddits = ["memes", "dankmemes", "me_irl", "wholesomememes", "PrequelMemes"]
+    subreddits = ["memes", "dankmemes", "me_irl", "wholesomememes"]
     sub = random.choice(subreddits)
     url = "https://meme-api.herokuapp.com/gimme/" + sub
     response = requests.get(url).text
