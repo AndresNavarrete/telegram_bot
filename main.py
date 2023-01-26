@@ -5,7 +5,7 @@ from telegram.ext import (
     MessageHandler,
     ApplicationBuilder,
     CommandHandler,
-    CallbackContext,
+    ContextTypes,
 )
 
 from dotenv import load_dotenv
@@ -23,21 +23,21 @@ logging.basicConfig(
     )
 
 
-async def start(update: Update, context: CallbackContext.DEFAULT_TYPE) -> None:
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await context.bot.send_message(
         chat_id=update.effective_chat.id,
         text="Hola amor! ❤️ Ahora puedes pedirle cosas a nuestro bot. Escribe /help para más detalles",
     )
 
 
-async def help_command(update: Update, context: CallbackContext.DEFAULT_TYPE) -> None:
+async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     logging.info("Help command")
     """Send a message when the command /help is issued."""
     msg = help_menu()
     await update.message.reply_text(msg)
 
 
-async def answer(update: Update, context: CallbackContext.DEFAULT_TYPE) -> None:
+async def answer(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     text_input = update.message.text
     logging.info(f"Text input: {text_input}")
     if text_input == "1":
