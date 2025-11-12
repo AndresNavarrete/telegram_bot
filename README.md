@@ -6,17 +6,14 @@ The requirements.txt file should list all Python libraries that are mandatory fo
 pipenv shell
 ```
 
-A `.env` file is needed to run the bot. Enviroment must have the following variables:
+A `.env` file is needed to run the bot. Environment must have the following variables:
 
 ```sh
-
-TOKEN=''     # telegram bot token
-MOVIE_KEY='' # omdb-api token
-IMDB_KEY=''  # imdb-api token
-
+TOKEN=''     # telegram bot token
+MOVIE_KEY='' # omdb-api token (used for fetching movie plots and posters)
 ```
 
-All movies data is streamed from [Open Movie Database] and [IMDb Api]
+Movie listings are loaded from local JSON files in the `data/` directory. Plot and poster details are fetched from [Open Movie Database].
 
 To run the bot you just need to execute the following line:
 
@@ -24,7 +21,4 @@ To run the bot you just need to execute the following line:
 python3 main.py
 ```
 
-
-
 [Open Movie Database]: <https://www.omdbapi.com/>
-[IMDb Api]:  <https://imdb-api.com/> 
